@@ -42,7 +42,7 @@ mongoose.connect(
     useCreateIndex: true,
     useFindAndModify: true,
   },
-  () => console.log("Connect Success !")
+  () => console.log("Connect MongoDB Success !")
 );
 
 app.listen(port, () =>
