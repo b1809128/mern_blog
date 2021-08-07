@@ -6,9 +6,10 @@ import Write from "./pages/Write/Write";
 import Settings from "./pages/Settings/Settings";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 function App() {
-  const currentUser = true;
-  const test = false;
+  const { user } = useContext(Context);
   return (
     <Router>
       <Topbar />
@@ -16,21 +17,14 @@ function App() {
         <Route exact path="/">
           <Homepage />
         </Route>
-        <Route path="/posts">
-          <Homepage />
-        </Route>
-        <Route path="/post/:id">
+        <Route path="/register">{user ? <Homepage /> : <Register />}</Route>
+        <Route path="/login">{user ? <Homepage /> : <Login />}</Route>
+        <Route path="/write">{user ? <Write /> : <Register />}</Route>
+        <Route path="/settings">{user ? <Settings /> : <Register />}</Route>
+        <Route path="/post/:postId">
           <Single />
         </Route>
-        <Route path="/register">
-          {test ? <Homepage /> : <Register />}
-        </Route>
-        <Route path="/login">{test ? <Homepage /> : <Login />}</Route>
-        <Route path="/write">{currentUser ? <Write /> : <Homepage />}</Route>
-        <Route path="/settings">
-          {currentUser ? <Settings /> : <Homepage />}
-        </Route>
-      </Switch>      
+      </Switch>
     </Router>
   );
 }
