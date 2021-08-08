@@ -9,7 +9,7 @@ import { Context } from "../../context/Context";
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://backendmyblogapp.herokuapp.com/images/";
   const [post, setPost] = useState({});
   const { user} = useContext(Context);
   const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await axios.get("https://backendmyblogapp.herokuapp.com/posts/" + path);
       setPost(res.data);
     };
     getPost();
@@ -26,7 +26,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`https://backendmyblogapp.herokuapp.com/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
@@ -35,7 +35,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`https://backendmyblogapp.herokuapp.com/posts/${post._id}`, {
         username: user.username,
         title,
         desc,

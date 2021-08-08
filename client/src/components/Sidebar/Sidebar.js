@@ -1,7 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
-import {Context} from '../../context/Context';
 import axios from "axios";
 import "./sidebar.css";
 
@@ -11,7 +9,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories");
+      const res = await axios.get("https://backendmyblogapp.herokuapp.com/categories");
       setCats(res.data)
     };
     getCats();

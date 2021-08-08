@@ -6,9 +6,12 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/users");
 const postRoutes = require("./routes/posts");
 const categoryRoutes = require("./routes/categories");
+const cors = require('cors');
+require('dotenv').config();
 const app = express();
+app.use(cors());
 app.use(express.json());
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
 app.get("/", (req, res) => {
@@ -29,11 +32,12 @@ app.post("/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/categories", categoryRoutes);
-const url = "mongodb+srv://quochuy:quochuy123@cluster0.jo9kh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const url = process.env.MONGODB_URL;
 mongoose.connect(
   url,
   {
