@@ -11,7 +11,7 @@ export default function Homepage() {
   const {search} = useLocation();
   useEffect(()=>{
     const fetchPosts = async ()=>{
-      const res = await axios.get("https://backendmyblogapp.herokuapp.com/posts/"+search);
+      const res = await axios.get("http://localhost:5000/posts/"+search);
       setPosts(res.data);
     }
     fetchPosts();

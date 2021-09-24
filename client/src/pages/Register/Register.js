@@ -13,12 +13,12 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post("https://backendmyblogapp.herokuapp.com/auth/register", {
+      const res = await axios.post("http://localhost:5000/auth/register", {
         username,
         email,
         password,
       });
-      res.data && window.location.replace("https://backendmyblogapp.herokuapp.com/login");
+      res.data && window.location.replace("/login");
     } catch (err) {
       setError(true);
     }
